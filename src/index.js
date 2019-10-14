@@ -12,11 +12,10 @@ const store = createStore(reducer);
 
 // Provider is a helper component that allows us to inject our store to the App.
 
-const app = (
+ReactDOM.render(
   <Provider store={store}>
     <App />
-  </Provider>
+  </Provider>,
+  document.getElementById('root')
 );
-
-ReactDOM.render({ app }, document.getElementById('root'));
 registerServiceWorker();
