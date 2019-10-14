@@ -1,8 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import reducer from './store/reducer';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const store = createStore(reducer);
+
+// Provider is a helper component that allows us to inject our store to the App.
+
+const app = (
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
+
+ReactDOM.render({ app }, document.getElementById('root'));
 registerServiceWorker();
