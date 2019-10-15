@@ -55,10 +55,10 @@ const mapDispatchToProps = dispatch => {
   // executed to dispatch an action.
   return {
     // We can assign this for example to the click handlers. It is a function reference.
-    onIncrementCountr: () => dispatch({ type: 'INC_COUNTER' }),
-    onDecrementCountr: () => dispatch({ type: 'DEC_COUNTER' }),
-    onAddCountr: () => dispatch({ type: 'ADD_COUNTER', value: 5 }),
-    onSubstractCountr: () => dispatch({ type: 'SUB_COUNTER', value: 5 })
+    onIncrementCountr: () => dispatch({ type: 'INCREMENT' }),
+    onDecrementCountr: () => dispatch({ type: 'DECREMENT' }),
+    onAddCountr: () => dispatch({ type: 'ADD', value: 5 }),
+    onSubstractCountr: () => dispatch({ type: 'SUBTRACT', value: 5 })
   };
 };
 

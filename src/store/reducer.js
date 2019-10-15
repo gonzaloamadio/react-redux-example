@@ -4,31 +4,30 @@ const initialState = {
 };
 
 const rootReducer = (state = initialState, action) => {
-  if (action.type === 'INC_COUNTER') {
-    return {
-      ...state,
-      counter: state.counter + 1
-    };
+  switch (action.type) {
+    case 'INCREMENT':
+      return {
+        ...state,
+        counter: state.counter + 1
+      };
+    case 'DECREMENT':
+      return {
+        ...state,
+        counter: state.counter - 1
+      };
+    case 'ADD':
+      return {
+        ...state,
+        counter: state.counter + action.value
+      };
+    case 'SUBTRACT':
+      return {
+        ...state,
+        counter: state.counter - action.value
+      };
+    default:
+      return state;
   }
-  if (action.type === 'ADD_COUNTER') {
-    return {
-      ...state,
-      counter: state.counter + action.value
-    };
-  }
-  if (action.type === 'DEC_COUNTER') {
-    return {
-      ...state,
-      counter: state.counter - 1
-    };
-  }
-  if (action.type === 'SUB_COUNTER') {
-    return {
-      ...state,
-      counter: state.counter - action.value
-    };
-  }
-  return state;
 };
 
 export default rootReducer;
