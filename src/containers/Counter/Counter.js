@@ -23,6 +23,17 @@ class Counter extends Component {
           label="Subtract 5"
           clicked={this.props.onSubstractCountr}
         />
+        <hr />
+        {/* Store result in list, to manage more states beside the counter. */}
+        {/* We want to have this list, that if we click, we can delete it from the list. */}
+        <button onClick={this.props.onStoreResult}>Store Result</button>
+        <ul>
+          {this.props.storedResults.map(res => (
+            <li onClick={() => this.props.onDeleteResult(res.id)} key={res.id}>
+              {res.value}
+            </li>
+          ))}
+        </ul>
       </div>
     );
   }
@@ -44,7 +55,8 @@ const mapStateToProps = state => {
   return {
     // Here we are saying, give me the counter property of the redux state. And give it to me in the
     // form of the prop called "ctr", that then I can use in the component.
-    ctr: state.counter
+    ctr: state.counter,
+    storedResults: state.results
   };
 };
 
@@ -58,7 +70,9 @@ const mapDispatchToProps = dispatch => {
     onIncrementCountr: () => dispatch({ type: 'INCREMENT' }),
     onDecrementCountr: () => dispatch({ type: 'DECREMENT' }),
     onAddCountr: () => dispatch({ type: 'ADD', value: 5 }),
-    onSubstractCountr: () => dispatch({ type: 'SUBTRACT', value: 5 })
+    onSubstractCountr: () => dispatch({ type: 'SUBTRACT', value: 5 }),
+    onStoreResult: () => dispatch({ type: 'STORE_RESULT' }),
+    onDeleteResult: id => dispatch({ type: 'DELETE_RESULT', resultElId: id })
   };
 };
 
