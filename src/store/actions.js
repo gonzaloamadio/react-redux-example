@@ -1,3 +1,5 @@
+/* eslint-disable react/no-typos */
+
 // Outsource actions types
 
 export const INCREMENT = 'INCREMENT';
