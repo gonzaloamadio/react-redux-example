@@ -8,6 +8,7 @@
 
 // Object with all action types
 import * as actionTypes from '../actions/actionTypes';
+import { updateObject } from '../utility';
 
 const initialState = {
   results: []
@@ -15,24 +16,19 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.STORE_RESULT: // Inmutable way of updating an array (add elem)
-      return {
-        ...state,
-        // concate return new array, push no. That is why use concat.
+    case actionTypes.STORE_RESULT:
+      return updateObject(state, {
         results: state.results.concat({
           value: action.result,
           id: new Date()
         })
-      };
-    case actionTypes.DELETE_RESULT: // Inmutable way of updating an array (delete elem)
+      });
+    case actionTypes.DELETE_RESULT:
       // Filter return a new array
       const updatedArray = state.results.filter(
         elem => elem.id !== action.resultElId
       );
-      return {
-        ...state,
-        results: updatedArray
-      };
+      return updateObject(state, { results: updatedArray });
     default:
       return state;
   }
