@@ -1,7 +1,7 @@
 /* eslint-disable react/no-typos */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
 import counterReducer from './store/reducers/counter';
@@ -25,7 +25,21 @@ const rootReducer = combineReducers({
   res: resultsReducer
 });
 
-const store = createStore(rootReducer);
+// We do not have to call this functions, it is all done by redux.
+// We only have to aplly this middleware to the store.
+const logger = store => {
+  return next => {
+    return action => {
+      // Here we write code we want to run in between the action and the reducer.
+      console.log('[Middleware] Dispatching', action);
+      const result = next(action);
+      console.log('[Middleware] next state', store.getState());
+      return result;
+    };
+  };
+};
+// applyMiddleware takes a list of middlewares that are applied in order
+const store = createStore(rootReducer, applyMiddleware(logger));
 
 // Provider is a helper component that allows us to inject our store to the App.
 
