@@ -1,8 +1,9 @@
 /* eslint-disable react/no-typos */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk'
 
 import counterReducer from './store/reducers/counter';
 import resultsReducer from './store/reducers/results';
@@ -38,8 +39,13 @@ const logger = store => {
     };
   };
 };
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // applyMiddleware takes a list of middlewares that are applied in order
-const store = createStore(rootReducer, applyMiddleware(logger));
+const store = createStore(
+  rootReducer,
+  composeEnhancers(applyMiddleware(logger, thunk))
+);
 
 // Provider is a helper component that allows us to inject our store to the App.
 

@@ -1,7 +1,7 @@
 /* eslint-disable react/no-typos */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actionTypes from '../../store/actions';
+import * as actionCreators from '../../store/actions/actions';
 
 import CounterControl from '../../components/CounterControl/CounterControl';
 import CounterOutput from '../../components/CounterOutput/CounterOutput';
@@ -70,14 +70,14 @@ const mapDispatchToProps = dispatch => {
   // executed to dispatch an action.
   return {
     // We can assign this for example to the click handlers. It is a function reference.
-    onIncrementCountr: () => dispatch({ type: actionTypes.INCREMENT }),
-    onDecrementCountr: () => dispatch({ type: actionTypes.DECREMENT }),
-    onAddCountr: () => dispatch({ type: actionTypes.ADD, value: 5 }),
-    onSubstractCountr: () => dispatch({ type: actionTypes.SUBTRACT, value: 5 }),
+    onIncrementCountr: () => dispatch(actionCreators.increment()),
+    onDecrementCountr: () => dispatch(actionCreators.decrement()),
+    onAddCountr: () => dispatch(actionCreators.add(5)),
+    onSubstractCountr: () => dispatch(actionCreators.subtract(5)),
     onStoreResult: result =>
-      dispatch({ type: actionTypes.STORE_RESULT, result }),
+      dispatch(actionCreators.storeResult(result)),
     onDeleteResult: id =>
-      dispatch({ type: actionTypes.DELETE_RESULT, resultElId: id })
+      dispatch(actionCreators.deleteResult(id))
   };
 };
 
