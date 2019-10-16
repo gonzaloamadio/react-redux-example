@@ -7,7 +7,7 @@
 // old state + action + (optionally) action data => new state
 
 // Object with all action types
-import * as actionTypes from '../actions/actions';
+import * as actionTypes from '../actions/actionsTypes';
 
 const initialState = {
   results: []

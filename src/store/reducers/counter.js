@@ -1,7 +1,7 @@
 /* eslint-disable react/no-typos */
 
 // Object with all action types
-import * as actionTypes from '../actions/actions';
+import * as actionTypes from '../actions/actionsTypes';
 
 const initialState = {
   counter: 0
