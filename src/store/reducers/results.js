@@ -14,21 +14,29 @@ const initialState = {
   results: []
 };
 
+const deleteResult = (state, action) => {
+  // Filter return a new array
+  const updatedArray = state.results.filter(
+    elem => elem.id !== action.resultElId
+  );
+  return updateObject(state, { results: updatedArray });
+};
+
+const storeResult = (state, action) => {
+  return updateObject(state, {
+    results: state.results.concat({
+      value: action.result,
+      id: new Date()
+    })
+  });
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.STORE_RESULT:
-      return updateObject(state, {
-        results: state.results.concat({
-          value: action.result,
-          id: new Date()
-        })
-      });
+      return storeResult(state, action);
     case actionTypes.DELETE_RESULT:
-      // Filter return a new array
-      const updatedArray = state.results.filter(
-        elem => elem.id !== action.resultElId
-      );
-      return updateObject(state, { results: updatedArray });
+      return deleteResult(state, action);
     default:
       return state;
   }
