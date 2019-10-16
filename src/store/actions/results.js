@@ -11,8 +11,9 @@ export const storeResultSync = result => {
 export const storeResult = result => {
   // The function receives dispatch due to redux-thunk. It is a middleware
   // and it runs between the dispatch and the reducer.
-  return dispatch => {
+  return (dispatch, getState) => {
     setTimeout(() => {
+      console.log('getState().ctr.counter', getState().ctr.counter);
       dispatch(storeResultSync(result));
     }, 2000);
   };
