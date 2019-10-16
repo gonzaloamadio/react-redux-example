@@ -1,5 +1,5 @@
 /* eslint-disable react/no-typos */
-import * as actionTypes from './actionsTypes';
+import * as actionTypes from './actionTypes';
 
 export const increment = () => {
   return {
